@@ -10,20 +10,32 @@ export const commands: Record<string, Command> = {
   help: {
     name: "help",
     description: "Show all available commands",
-    run: () => [
-      { type: "text", content: "Available commands:" },
-      { type: "text", content: "" },
-      { type: "text", content: "  help        - Show this help message" },
-      { type: "text", content: "  about       - Learn about me" },
-      { type: "text", content: "  projects    - View my selected projects" },
-      { type: "text", content: "  experience  - View my work experience" },
-      { type: "text", content: "  education   - View my education" },
-      { type: "text", content: "  skills      - Technical skills overview" },
-      { type: "text", content: "  contact     - Get in touch" },
-      { type: "text", content: "  clear       - Clear the console" },
-      { type: "text", content: "" },
+    run: (): ConsoleMessage[] => [
+      { type: "text" as const, content: "Available commands:" },
+      { type: "text" as const, content: "" },
       {
-        type: "text",
+        type: "text" as const,
+        content: "  help        - Show this help message",
+      },
+      { type: "text" as const, content: "  about       - Learn about me" },
+      {
+        type: "text" as const,
+        content: "  projects    - View my selected projects",
+      },
+      {
+        type: "text" as const,
+        content: "  experience  - View my work experience",
+      },
+      { type: "text" as const, content: "  education   - View my education" },
+      {
+        type: "text" as const,
+        content: "  skills      - Technical skills overview",
+      },
+      { type: "text" as const, content: "  contact     - Get in touch" },
+      { type: "text" as const, content: "  clear       - Clear the console" },
+      { type: "text" as const, content: "" },
+      {
+        type: "text" as const,
         content: "Tip: Click on command chips or type directly in the console!",
       },
     ],
@@ -33,21 +45,21 @@ export const commands: Record<string, Command> = {
   about: {
     name: "about",
     description: "Learn about me",
-    run: () => [
-      { type: "text", content: `Who is ${personalData.name}?` },
-      { type: "text", content: "" },
-      { type: "text", content: personalData.bio },
-      { type: "text", content: "" },
-      { type: "text", content: ` Location: ${personalData.location}` },
-      { type: "text", content: ` Role: ${personalData.role}` },
-      { type: "text", content: "" },
+    run: (): ConsoleMessage[] => [
+      { type: "text" as const, content: `Who is ${personalData.name}?` },
+      { type: "text" as const, content: "" },
+      { type: "text" as const, content: personalData.bio },
+      { type: "text" as const, content: "" },
+      { type: "text" as const, content: ` Location: ${personalData.location}` },
+      { type: "text" as const, content: ` Role: ${personalData.role}` },
+      { type: "text" as const, content: "" },
       {
-        type: "text",
+        type: "text" as const,
         content:
           " I love building innovative solutions and learning new technologies.",
       },
       {
-        type: "text",
+        type: "text" as const,
         content:
           "When I'm not coding, you can find me exploring new frameworks or contributing to open source.",
       },
@@ -210,7 +222,7 @@ export const commands: Record<string, Command> = {
   clear: {
     name: "clear",
     description: "Clear the console",
-    run: () => [{ type: "text", content: "" }],
+    run: () => [], // Return empty array since Console component handles clearing
   },
 };
 

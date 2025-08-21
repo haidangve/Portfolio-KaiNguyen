@@ -4,9 +4,9 @@
   --color-hud-bg: #0a0b10;
   --color-hud-panel: #0e1220;
   --color-hud-text: #e6eaf2;
-  --color-hud-accent: #23ffd2;
-  --color-hud-teal-200: #b2f5ea;
-  --color-hud-teal-400: #2dd4bf;
+  --color-hud-accent: #ff6b35;
+  --color-hud-orange-200: #fed7aa;
+  --color-hud-orange-400: #fb923c;
 
   --font-family-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace,
     SFMono-Regular, Menlo, Consolas, monospace;
@@ -32,9 +32,9 @@ body {
 }
 
 @utility hud-glow {
-  box-shadow: 0 0 8px rgb(35 255 210 / 0.15);
+  box-shadow: 0 0 8px rgb(255 107 53 / 0.15);
 }
 
 @utility hud-glow-strong {
-  box-shadow: 0 0 16px rgb(35 255 210 / 0.3);
+  box-shadow: 0 0 16px rgb(255 107 53 / 0.3);
 }
