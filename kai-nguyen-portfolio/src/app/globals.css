@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  --color-hud-bg: #0a0b10;
+  --color-hud-panel: #0e1220;
+  --color-hud-text: #e6eaf2;
+  --color-hud-accent: #23ffd2;
+  --color-hud-teal-200: #b2f5ea;
+  --color-hud-teal-400: #2dd4bf;
+  
+  --font-family-mono: Consolas, Monaco, "Lucida Console", monospace;
+}
+
+body {
+  @apply bg-hud-bg text-hud-text font-mono min-h-screen;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@utility animate-blink {
+  animation: blink 1s infinite;
+}
+
+@utility hud-glow {
+  box-shadow: 0 0 8px rgb(35 255 210 / 0.15);
+}
+
+@utility hud-glow-strong {
+  box-shadow: 0 0 16px rgb(35 255 210 / 0.3);
+}
