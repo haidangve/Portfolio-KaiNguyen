@@ -7,8 +7,9 @@
   --color-hud-accent: #23ffd2;
   --color-hud-teal-200: #b2f5ea;
   --color-hud-teal-400: #2dd4bf;
-  
-  --font-family-mono: Consolas, Monaco, "Lucida Console", monospace;
+
+  --font-family-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace,
+    SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 body {
@@ -16,8 +17,14 @@ body {
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @utility animate-blink {
