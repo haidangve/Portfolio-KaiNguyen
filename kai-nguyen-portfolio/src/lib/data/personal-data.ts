@@ -45,7 +45,7 @@ export interface PersonalInfo {
 export const personalData: PersonalInfo = {
   name: "Kai Nguyen",
   role: "Software Engineer",
-  location: "Vietnam",
+  location: "Toronto, ON, Canada",
   email: "duchai.nv0909@gmail.com",
   bio: "I'm a software engineer with a passion for building innovative solutions.",
 
@@ -68,11 +68,12 @@ export const personalData: PersonalInfo = {
     ],
     backend: [
       "Node.js",
+      "Java",
+      "C# (.NET)",
       "Express",
       "Python",
       "PostgreSQL",
       "MongoDB",
-      "Redis",
       "REST APIs",
       "GraphQL",
       "WebSockets",
