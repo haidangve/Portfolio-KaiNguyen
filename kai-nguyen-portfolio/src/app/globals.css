@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -5,15 +6,15 @@
   --color-hud-panel: #0e1220;
   --color-hud-text: #e6eaf2;
   --color-hud-accent: #ff6b35;
-  --color-hud-orange-200: #fed7aa;
-  --color-hud-orange-400: #fb923c;
 
   --font-family-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace,
     SFMono-Regular, Menlo, Consolas, monospace;
+  --font-family-title: "Orbitron", monospace;
+  --font-family-content: "Rajdhani", sans-serif;
 }
 
 body {
-  @apply bg-hud-bg text-hud-text font-mono min-h-screen;
+  @apply bg-hud-bg text-hud-text font-content min-h-screen;
 }
 
 @keyframes blink {
@@ -37,4 +38,16 @@ body {
 
 @utility hud-glow-strong {
   box-shadow: 0 0 16px rgb(255 107 53 / 0.3);
+}
+
+@utility font-title {
+  font-family: var(--font-family-title);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+@utility font-content {
+  font-family: var(--font-family-content);
+  font-weight: 400;
+  letter-spacing: 0.05em;
 }

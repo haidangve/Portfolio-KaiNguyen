@@ -31,8 +31,7 @@ export const commands: Record<string, Command> = {
         type: "text" as const,
         content: "  skills      - Technical skills overview",
       },
-      { type: "text" as const, content: "  contact     - Get in touch" },
-      { type: "text" as const, content: "  clear       - Clear the console" },
+      { type: "text" as const, content: "  home        - Go to home screen" },
       { type: "text" as const, content: "" },
       {
         type: "text" as const,
@@ -145,17 +144,6 @@ export const commands: Record<string, Command> = {
         );
       });
 
-      if (personalData.certifications.length > 0) {
-        messages.push({ type: "text", content: "CERTIFICATIONS:" });
-        personalData.certifications.forEach((cert) => {
-          messages.push({
-            type: "text",
-            content: `  • ${cert.name} (${cert.year})`,
-          });
-        });
-        messages.push({ type: "text", content: "" });
-      }
-
       messages.push({
         type: "text",
         content:
@@ -193,35 +181,10 @@ export const commands: Record<string, Command> = {
     },
   },
 
-  // Contact command: Display my contact information
-  contact: {
-    name: "contact",
-    description: "Display my contact information",
-    run: () => [
-      { type: "text", content: "Contact Information:" },
-      { type: "divider" },
-      { type: "text", content: "EMAIL:" },
-      { type: "text", content: `  ${personalData.email}` },
-      { type: "text", content: "" },
-      { type: "text", content: "SOCIAL:" },
-      { type: "text", content: `  GitHub: ${personalData.social.github}` },
-      { type: "text", content: `  LinkedIn: ${personalData.social.linkedin}` },
-      {
-        type: "text",
-        content: `  Instagram: ${personalData.social.instagram}`,
-      },
-      { type: "text", content: "" },
-      {
-        type: "text",
-        content: "Feel free to reach out for collaboration opportunities!",
-      },
-    ],
-  },
-
-  // Clear command: Clear the console
-  clear: {
-    name: "clear",
-    description: "Clear the console",
+  // Home command: Go to home screen
+  home: {
+    name: "home",
+    description: "Go to home screen",
     run: () => [], // Return empty array since Console component handles clearing
   },
 };
@@ -255,7 +218,6 @@ export function runCommand(cmd: string): ConsoleMessage[] {
       cmd.includes(command) ||
       command.includes(cmd) ||
       // Check for common typos
-      (cmd === "contact" && command === "ontact") ||
       (cmd === "projects" && command === "projet")
   );
 

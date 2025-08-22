@@ -28,10 +28,7 @@ export interface PersonalInfo {
     description?: string[];
     gpa?: string;
   }>;
-  certifications: Array<{
-    name: string;
-    year: string;
-  }>;
+
   projects: Array<{
     name: string;
     description: string;
@@ -143,12 +140,6 @@ export const personalData: PersonalInfo = {
         "Senior Project: Real-time Collaborative Code Editor",
       ],
     },
-  ],
-
-  certifications: [
-    { name: "AWS Certified Solutions Architect", year: "2023" },
-    { name: "Google Cloud Professional Developer", year: "2022" },
-    { name: "TensorFlow Developer Certificate", year: "2021" },
   ],
 
   projects: [
