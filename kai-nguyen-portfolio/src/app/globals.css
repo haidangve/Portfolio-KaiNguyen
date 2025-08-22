@@ -28,16 +28,39 @@ body {
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @utility animate-blink {
   animation: blink 1s infinite;
 }
 
+@utility animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
 @utility hud-glow {
-  box-shadow: 0 0 8px rgb(255 107 53 / 0.15);
+  box-shadow: 0 0 4px rgb(255 107 53 / 0.1);
 }
 
 @utility hud-glow-strong {
-  box-shadow: 0 0 16px rgb(255 107 53 / 0.3);
+  box-shadow: 0 0 8px rgb(255 107 53 / 0.2);
+}
+
+@utility border-bold {
+  border: 2px solid rgb(255 107 53 / 0.6);
+}
+
+@utility border-thin {
+  border: 1px solid rgb(255 107 53 / 0.3);
 }
 
 @utility font-title {
