@@ -15,68 +15,20 @@ export function Console({
   errorMessages = [],
 }: ConsoleProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [loadingText, setLoadingText] = useState("");
-  const [scrambledText, setScrambledText] = useState("");
-
-  // Matrix-style characters for scrambling effect
-  const matrixChars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?";
-
-  const scrambleText = (targetText: string) => {
-    let currentText = "";
-    const targetLength = targetText.length;
-
-    for (let i = 0; i < targetLength; i++) {
-      const randomChar =
-        matrixChars[Math.floor(Math.random() * matrixChars.length)];
-      currentText += randomChar;
-    }
-
-    return currentText;
-  };
+  const [currentContent, setCurrentContent] = useState<React.ReactNode>(null);
 
   useEffect(() => {
     if (activeTab) {
       setIsLoading(true);
-      setLoadingText("Loading");
 
-      // Simulate loading with different messages
-      const loadingMessages = [
-        "Loading",
-        "Processing",
-        "Generating",
-        "Compiling",
-        "Rendering",
-      ];
-
-      let messageIndex = 0;
-      let scrambleCount = 0;
-
-      const interval = setInterval(() => {
-        const currentMessage = loadingMessages[messageIndex] + "...";
-
-        // Scramble the text first
-        if (scrambleCount < 3) {
-          setScrambledText(scrambleText(currentMessage));
-          scrambleCount++;
-        } else {
-          // Show the actual text
-          setLoadingText(currentMessage);
-          setScrambledText("");
-          messageIndex = (messageIndex + 1) % loadingMessages.length;
-          scrambleCount = 0;
-        }
-      }, 150);
-
-      // Stop loading after a short delay
+      // Simulate loading delay
       const timeout = setTimeout(() => {
+        setCurrentContent(getConsoleContent(activeTab));
         setIsLoading(false);
-        clearInterval(interval);
-      }, 1000);
+      }, 800);
 
       return () => {
         clearTimeout(timeout);
-        clearInterval(interval);
       };
     }
   }, [activeTab]);
@@ -473,11 +425,11 @@ export function Console({
               kai@portfolio:~$ {activeTab}
             </div>
             <div className="text-hud-accent font-mono animate-pulse">
-              {scrambledText || loadingText}
+              Loading...
             </div>
           </div>
         ) : (
-          getConsoleContent(activeTab)
+          <div className="space-y-4">{currentContent}</div>
         )}
       </div>
     </div>
