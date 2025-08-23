@@ -11,7 +11,6 @@ Instead of a static site, this portfolio functions like a **futuristic terminal 
 - 🔹 **Futuristic HUD Design** – Inspired by cyberpunk UIs; sharp panels, glowing highlights, and responsive layouts.  
 - 🔹 **Dynamic Suggestions & Error Handling** – Typo detection + suggestions (via Levenshtein distance).  
 - 🔹 **Embedded Media** – Inline galleries & images in the CLI output for projects.  
-- 🔹 **Command History** – Navigate past inputs with up/down keys.  
 - 🔹 **Identity Card Panel** – Avatar + personal info in a styled cyberpunk ID badge.  
 - 🔹 **Framer Motion Animations** – Smooth transitions and subtle text flickers.  
 - 🔹 **Responsive Layout** – Optimized for both desktop and mobile.  
