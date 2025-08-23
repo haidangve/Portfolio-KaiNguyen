@@ -101,7 +101,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-hud-panel text-hud-text font-content">
+    <div className="h-screen bg-hud-panel text-hud-text font-content overflow-hidden">
       {/* Header - 80px height */}
       <header className="h-[80px] bg-hud-panel border-b border-thin flex items-center justify-between px-6">
         <div className="flex items-center gap-4">
@@ -152,14 +152,14 @@ export default function Home() {
       </header>
 
       {/* Main Grid - Left: ID Card (510px), Right: Console + Chat Box */}
-      <main className="grid grid-cols-1 lg:grid-cols-[510px_1fr] min-h-[calc(100vh-120px)]">
+      <main className="grid grid-cols-1 lg:grid-cols-[510px_1fr] h-[calc(100vh-120px)]">
         {/* Left: ID Card */}
         <div className="p-0">
           <IdCard />
         </div>
 
         {/* Right: Console + Chat Box */}
-        <div className="p-0 border-l border-thin">
+        <div className="p-0 border-l border-thin min-h-0">
           <RightPanel
             activeTab={activeTab}
             onTabChange={setActiveTab}

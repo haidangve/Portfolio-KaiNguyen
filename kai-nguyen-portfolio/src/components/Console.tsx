@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Chip } from "@/components/ui/Chip";
+import { MediaHolder } from "@/components/ui/MediaHolder";
 import { personalData } from "@/lib/data/personal-data";
 
 interface ConsoleProps {
@@ -13,6 +14,73 @@ export function Console({
   onTabChange,
   errorMessages = [],
 }: ConsoleProps) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingText, setLoadingText] = useState("");
+  const [scrambledText, setScrambledText] = useState("");
+
+  // Matrix-style characters for scrambling effect
+  const matrixChars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?";
+
+  const scrambleText = (targetText: string) => {
+    let currentText = "";
+    const targetLength = targetText.length;
+
+    for (let i = 0; i < targetLength; i++) {
+      const randomChar =
+        matrixChars[Math.floor(Math.random() * matrixChars.length)];
+      currentText += randomChar;
+    }
+
+    return currentText;
+  };
+
+  useEffect(() => {
+    if (activeTab) {
+      setIsLoading(true);
+      setLoadingText("Loading");
+
+      // Simulate loading with different messages
+      const loadingMessages = [
+        "Loading",
+        "Processing",
+        "Generating",
+        "Compiling",
+        "Rendering",
+      ];
+
+      let messageIndex = 0;
+      let scrambleCount = 0;
+
+      const interval = setInterval(() => {
+        const currentMessage = loadingMessages[messageIndex] + "...";
+
+        // Scramble the text first
+        if (scrambleCount < 3) {
+          setScrambledText(scrambleText(currentMessage));
+          scrambleCount++;
+        } else {
+          // Show the actual text
+          setLoadingText(currentMessage);
+          setScrambledText("");
+          messageIndex = (messageIndex + 1) % loadingMessages.length;
+          scrambleCount = 0;
+        }
+      }, 150);
+
+      // Stop loading after a short delay
+      const timeout = setTimeout(() => {
+        setIsLoading(false);
+        clearInterval(interval);
+      }, 1000);
+
+      return () => {
+        clearTimeout(timeout);
+        clearInterval(interval);
+      };
+    }
+  }, [activeTab]);
+
   const getConsoleContent = (tab: string) => {
     switch (tab) {
       case "help":
@@ -21,35 +89,33 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ help
             </div>
-            <div className="text-hud-text font-bold text-lg mt-4 mb-2">
-              📋 Available Commands:
-            </div>
-            <div className="space-y-1 ml-4">
-              <div className="text-hud-text">
+
+            <div className="space-y-1 ml-4 mt-4">
+              <div className="text-hud-text/80">
                 <span className="text-hud-accent font-mono">help</span> - Show
                 this help message
               </div>
-              <div className="text-hud-text">
+              <div className="text-hud-text/80">
                 <span className="text-hud-accent font-mono">about</span> - Learn
                 about me
               </div>
-              <div className="text-hud-text">
+              <div className="text-hud-text/80">
                 <span className="text-hud-accent font-mono">projects</span> -
                 View my selected projects
               </div>
-              <div className="text-hud-text">
+              <div className="text-hud-text/80">
                 <span className="text-hud-accent font-mono">skills</span> -
                 Technical skills overview
               </div>
-              <div className="text-hud-text">
+              <div className="text-hud-text/80">
                 <span className="text-hud-accent font-mono">experience</span> -
                 View my work experience
               </div>
-              <div className="text-hud-text">
+              <div className="text-hud-text/80">
                 <span className="text-hud-accent font-mono">education</span> -
                 View my education
               </div>
-              <div className="text-hud-text">
+              <div className="text-hud-text/80">
                 <span className="text-hud-accent font-mono">home</span> - Go to
                 home screen
               </div>
@@ -62,29 +128,23 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ about
             </div>
-            <div className="text-hud-text font-bold text-lg mt-4 mb-2">
-              👨‍💻 About Me:
-            </div>
-            <div className="space-y-2 ml-4">
-              <div className="text-hud-text">
-                Hi, I'm{" "}
-                <span className="text-hud-accent font-bold">
-                  {personalData.name}
-                </span>
-                , a passionate {personalData.role} from Vietnam.
-              </div>
-              <div className="text-hud-text">{personalData.bio}</div>
-              <div className="text-hud-text mt-4">
-                <span className="text-hud-accent font-bold">🌍 Location:</span>{" "}
-                {personalData.location}
-              </div>
-              <div className="text-hud-text">
-                <span className="text-hud-accent font-bold">📧 Email:</span>{" "}
-                {personalData.email}
-              </div>
-              <div className="text-hud-text">
-                <span className="text-hud-accent font-bold">💼 Status:</span>{" "}
-                Open to new opportunities
+            <div className="ml-4 mt-4">
+              <div className="text-hud-text/80 text-base leading-relaxed">
+                {personalData.bio.split(/(\*\*.*?\*\*)/).map((part, index) => {
+                  if (part.startsWith("**") && part.endsWith("**")) {
+                    // Remove the ** markers and highlight the text
+                    const highlightedText = part.slice(2, -2);
+                    return (
+                      <span
+                        key={index}
+                        className="text-hud-accent font-semibold"
+                      >
+                        {highlightedText}
+                      </span>
+                    );
+                  }
+                  return <span key={index}>{part}</span>;
+                })}
               </div>
             </div>
           </>
@@ -95,24 +155,49 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ projects
             </div>
-            <div className="text-hud-text font-bold text-lg mt-4 mb-2">
-              🚀 Featured Projects:
-            </div>
-            <div className="space-y-4 ml-4">
+
+            <div className="space-y-6 ml-4">
               {personalData.projects.map((project, index) => (
-                <div
-                  key={index}
-                  className="border-l-2 border-hud-accent/30 pl-4"
-                >
-                  <div className="text-hud-accent font-bold">
-                    {project.name}
-                  </div>
-                  <div className="text-hud-text text-sm">
-                    {project.description}
-                  </div>
-                  <div className="text-hud-text/60 text-xs mt-1">
-                    <span className="text-hud-accent">Tech:</span>{" "}
-                    {project.technologies.join(", ")}
+                <div key={index} className="flex gap-4">
+                  {/* Project Thumbnail */}
+                  <MediaHolder className="w-48 h-32">
+                    <img
+                      src={project.image}
+                      alt={project.alt}
+                      className="w-full h-full object-cover object-center rounded-sm"
+                      style={{
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </MediaHolder>
+
+                  {/* Project Content */}
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-hud-accent font-bold hover:text-hud-accent/80 transition-colors cursor-pointer underline"
+                      >
+                        {project.name}
+                      </a>
+                      <span className="text-hud-accent/60">↗</span>
+                    </div>
+                    <div className="text-hud-text/80 text-sm mb-2 leading-relaxed">
+                      {project.description}
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {project.technologies.slice(0, 6).map((tech, i) => (
+                        <span
+                          key={i}
+                          className="px-2 py-1 bg-hud-accent/10 text-hud-accent text-xs rounded border border-hud-accent/20"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -125,25 +210,49 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ skills
             </div>
-            <div className="text-hud-text font-bold text-lg mt-4 mb-2">
-              🛠️ Technical Skills:
-            </div>
-            <div className="space-y-2 ml-4">
-              <div className="text-hud-text">
-                <span className="text-hud-accent font-bold">Frontend:</span>{" "}
-                {personalData.skills.frontend.join(", ")}
+            <div className="space-y-4 ml-4">
+              <div>
+                <div className="text-hud-accent font-bold mb-2">Frontend</div>
+                <div className="flex flex-wrap gap-2">
+                  {personalData.skills.frontend.slice(0, 8).map((skill, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 bg-hud-accent/10 text-hud-accent text-sm rounded border border-hud-accent/20"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="text-hud-text">
-                <span className="text-hud-accent font-bold">Backend:</span>{" "}
-                {personalData.skills.backend.join(", ")}
+
+              <div>
+                <div className="text-hud-accent font-bold mb-2">Backend</div>
+                <div className="flex flex-wrap gap-2">
+                  {personalData.skills.backend.slice(0, 6).map((skill, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 bg-hud-accent/10 text-hud-accent text-sm rounded border border-hud-accent/20"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="text-hud-text">
-                <span className="text-hud-accent font-bold">AI/ML:</span>{" "}
-                {personalData.skills.aiMl.join(", ")}
-              </div>
-              <div className="text-hud-text">
-                <span className="text-hud-accent font-bold">Tools:</span>{" "}
-                {personalData.skills.tools.join(", ")}
+
+              <div>
+                <div className="text-hud-accent font-bold mb-2">
+                  Tools & Platforms
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {personalData.skills.tools.slice(0, 8).map((skill, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 bg-hud-accent/10 text-hud-accent text-sm rounded border border-hud-accent/20"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </>
@@ -154,21 +263,40 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ experience
             </div>
-            <div className="text-hud-text font-bold text-lg mt-4 mb-2">
-              💼 Work Experience:
-            </div>
-            <div className="space-y-3 ml-4">
+            <div className="space-y-4 ml-4">
               {personalData.experience.map((exp, index) => (
                 <div
                   key={index}
                   className="border-l-2 border-hud-accent/30 pl-4"
                 >
-                  <div className="text-hud-accent font-bold">{exp.title}</div>
-                  <div className="text-hud-text text-sm">{exp.company}</div>
-                  <div className="text-hud-text/60 text-xs">{exp.period}</div>
-                  <div className="text-hud-text/70 text-xs mt-1">
-                    {exp.description.map((desc, i) => (
-                      <div key={i}>• {desc}</div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-hud-accent font-bold">
+                      {exp.title}
+                    </span>
+                    <span className="text-hud-text/60 text-sm">
+                      @{" "}
+                      {exp.companyLink ? (
+                        <a
+                          href={exp.companyLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-hud-text/60 hover:text-hud-accent/80 transition-colors underline"
+                        >
+                          {exp.company}
+                        </a>
+                      ) : (
+                        exp.company
+                      )}
+                    </span>
+                  </div>
+                  <div className="text-hud-text/60 text-sm mb-2">
+                    {exp.period}
+                  </div>
+                  <div className="text-hud-text/80 text-sm">
+                    {exp.description.slice(0, 2).map((desc, i) => (
+                      <div key={i} className="mb-1">
+                        • {desc}
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -182,28 +310,48 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ education
             </div>
-            <div className="text-hud-text font-bold text-lg mt-4 mb-2">
-              🎓 Education:
-            </div>
-            <div className="space-y-2 ml-4">
+            <div className="space-y-4 ml-4 mt-4">
               {personalData.education.map((edu, index) => (
                 <div
                   key={index}
                   className="border-l-2 border-hud-accent/30 pl-4"
                 >
-                  <div className="text-hud-accent font-bold">{edu.degree}</div>
-                  <div className="text-hud-text text-sm">{edu.institution}</div>
-                  <div className="text-hud-text/60 text-xs">{edu.period}</div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-hud-accent font-bold">
+                      {edu.degree}
+                    </span>
+                  </div>
+                  <div className="text-hud-text/80 text-sm mb-1">
+                    {edu.institution}
+                  </div>
+                  <div className="text-hud-text/60 text-sm mb-2">
+                    {edu.period}
+                  </div>
                   {edu.gpa && (
-                    <div className="text-hud-text/60 text-xs">
+                    <div className="text-hud-text/60 text-sm mb-2">
                       GPA: {edu.gpa}
                     </div>
                   )}
-                  {edu.description && (
-                    <div className="text-hud-text/70 text-xs mt-1">
-                      {edu.description.map((desc, i) => (
-                        <div key={i}>• {desc}</div>
+                  {edu.awards && edu.awards.length > 0 && (
+                    <div className="mb-2">
+                      <div className="text-hud-accent font-semibold text-sm mb-1">
+                        Awards & Recognition
+                      </div>
+                      {edu.awards.map((award, i) => (
+                        <div key={i} className="text-hud-text/80 text-sm mb-1">
+                          • {award}
+                        </div>
                       ))}
+                    </div>
+                  )}
+                  {edu.coursework && edu.coursework.length > 0 && (
+                    <div>
+                      <div className="text-hud-accent font-semibold text-sm mb-1">
+                        Relevant Coursework
+                      </div>
+                      <div className="text-hud-text/80 text-sm">
+                        {edu.coursework.join(", ")}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -217,8 +365,11 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ home
             </div>
-            <div className="text-hud-text/50 mt-4">
-              Type 'help' to see available commands.
+            <div className="text-hud-text/80">
+              Welcome to my interactive portfolio terminal!
+            </div>
+            <div className="text-hud-text/80 mt-4">
+              Type 'help' to see available commands or click on the tabs above.
             </div>
           </>
         );
@@ -243,7 +394,7 @@ export function Console({
   };
 
   return (
-    <div className="flex-1 flex flex-col border border-hud-accent/30 shadow-[0_0_8px_rgba(255,107,53,0.2)]">
+    <div className="flex-1 flex flex-col border border-hud-accent/30 shadow-[0_0_8px_rgba(255,107,53,0.2)] min-h-0">
       {/* Console Header */}
       <div className="bg-hud-accent/10 border-b border-hud-accent/30 px-6 py-2">
         <h2 className="text-sm font-title text-hud-accent uppercase tracking-widest">
@@ -252,7 +403,7 @@ export function Console({
       </div>
 
       {/* Tabs - Chrome Style */}
-      <div className="flex bg-hud-panel">
+      <div className="flex bg-hud-panel overflow-x-auto">
         <Chip
           active={activeTab === "home"}
           onClick={() => onTabChange("home")}
@@ -275,23 +426,23 @@ export function Console({
           about
         </Chip>
         <Chip
-          active={activeTab === "projects"}
-          onClick={() => onTabChange("projects")}
-          isAfterActive={activeTab === "about"}
-        >
-          projects
-        </Chip>
-        <Chip
           active={activeTab === "experience"}
           onClick={() => onTabChange("experience")}
-          isAfterActive={activeTab === "projects"}
+          isAfterActive={activeTab === "about"}
         >
           experience
         </Chip>
         <Chip
+          active={activeTab === "projects"}
+          onClick={() => onTabChange("projects")}
+          isAfterActive={activeTab === "experience"}
+        >
+          projects
+        </Chip>
+        <Chip
           active={activeTab === "education"}
           onClick={() => onTabChange("education")}
-          isAfterActive={activeTab === "experience"}
+          isAfterActive={activeTab === "projects"}
         >
           education
         </Chip>
@@ -305,16 +456,25 @@ export function Console({
       </div>
 
       {/* Console Content - Display Tab Content */}
-      <div className="flex-1 overflow-y-auto space-y-4 font-content text-sm p-6 bg-hud-panel relative">
+      <div className="flex-1 overflow-y-auto space-y-4 font-content text-base p-6 bg-hud-panel relative min-h-0 console-content">
         {/* Subtle top border for merged effect */}
         <div className="absolute top-0 left-0 right-0 h-px bg-hud-accent/30"></div>
         {errorMessages.length > 0 ? (
           <div className="space-y-2">
             {errorMessages.map((message, index) => (
               <div key={index} className="text-hud-accent font-mono">
-                ❌ {message}
+                Error: {message}
               </div>
             ))}
+          </div>
+        ) : isLoading ? (
+          <div className="flex items-center space-x-2">
+            <div className="text-hud-accent font-mono font-bold">
+              kai@portfolio:~$ {activeTab}
+            </div>
+            <div className="text-hud-accent font-mono animate-pulse">
+              {scrambledText || loadingText}
+            </div>
           </div>
         ) : (
           getConsoleContent(activeTab)

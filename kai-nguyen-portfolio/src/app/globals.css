@@ -17,6 +17,16 @@ body {
   @apply bg-hud-bg text-hud-text font-content min-h-screen;
 }
 
+/* Hide scrollbar for console content */
+.console-content::-webkit-scrollbar {
+  display: none;
+}
+
+.console-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @keyframes blink {
   0%,
   50% {
