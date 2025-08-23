@@ -133,13 +133,17 @@ export const commands: Record<string, Command> = {
         messages.push(
           { type: "text", content: edu.degree.toUpperCase() },
           { type: "text", content: `${edu.institution} | ${edu.period}` },
-          ...(edu.description?.map((desc) => ({
-            type: "text" as const,
-            content: `  • ${desc}`,
-          })) || []),
           ...(edu.gpa
             ? [{ type: "text" as const, content: `  • GPA: ${edu.gpa}` }]
             : []),
+          ...(edu.awards?.map((award) => ({
+            type: "text" as const,
+            content: `  • ${award}`,
+          })) || []),
+          ...(edu.coursework?.map((course) => ({
+            type: "text" as const,
+            content: `  • ${course}`,
+          })) || []),
           { type: "text", content: "" }
         );
       });
@@ -204,7 +208,7 @@ export function runCommand(cmd: string): ConsoleMessage[] {
     ];
   }
 
-  const [command, ...args] = trimmedCmd.toLowerCase().split(" ");
+  const [command] = trimmedCmd.toLowerCase().split(" ");
 
   // Check if command exists
   if (commands[command]) {

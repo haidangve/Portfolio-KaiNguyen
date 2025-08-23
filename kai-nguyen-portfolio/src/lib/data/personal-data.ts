@@ -163,12 +163,7 @@ export const personalData: PersonalInfo = {
         "A creative web app that converts images into artistic 'checkbox' sketches. Built in just one hour as part of a coding challenge, this prototype demonstrates rapid development skills and creative problem-solving. The app transforms uploaded images into unique checkbox-based artwork, showcasing the intersection of art and technology.",
       image: "/img/checkbox.png",
       alt: "Image to checkbox sketch converter",
-      technologies: [
-        "Next.js",
-        "Tailwind CSS",
-        "JavaScript",
-        "Image Processing",
-      ],
+      technologies: ["React", "TypeScript", "JavaScript", "Tailwind CSS"],
       link: "https://checkbox-pixel-art.vercel.app/",
     },
     {

@@ -321,7 +321,8 @@ export function Console({
               Welcome to my interactive portfolio terminal!
             </div>
             <div className="text-hud-text/80 mt-4">
-              Type 'help' to see available commands or click on the tabs above.
+              Type &apos;help&apos; to see available commands or click on the
+              tabs above.
             </div>
           </>
         );
@@ -332,13 +333,13 @@ export function Console({
               kai@portfolio:~$ welcome
             </div>
             <div className="text-hud-text mt-4">
-              Hi, I'm Kai Nguyen, a Software Engineer.
+              Hi, I&apos;m Kai Nguyen, a Software Engineer.
             </div>
             <div className="text-hud-text">
               Welcome to my interactive portfolio terminal!
             </div>
             <div className="text-hud-text mt-4">
-              Type 'help' to see available commands.
+              Type &apos;help&apos; to see available commands.
             </div>
           </>
         );

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { IdCard } from "@/components/IdCard";
 import { RightPanel } from "@/components/RightPanel";
@@ -117,7 +117,12 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <Button href="/resume.pdf" download size="md">
+          <Button
+            href="https://drive.google.com/file/d/1O6tJD4kJrdcXpCtYku3lAf6RTN7_6C37/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            size="md"
+          >
             <Download className="w-4 h-4" />
             Resume
           </Button>
