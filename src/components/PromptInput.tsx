@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, KeyboardEvent, useRef } from "react";
 import { findClosestCommand } from "@/lib/utils";
+import { SendButton } from "@/components/ui/SendButton";
 
 interface PromptInputProps {
   onCommandSubmit: (command: string) => void;
@@ -99,6 +100,14 @@ export function PromptInput({
             }}
           />
         </div>
+
+        {/* Send button - only visible on mobile when user types */}
+        <SendButton
+          inputValue={inputValue}
+          validCommands={validCommands}
+          onCommandSubmit={onCommandSubmit}
+          onClearInput={() => setInputValue("")}
+        />
       </div>
     </div>
   );
