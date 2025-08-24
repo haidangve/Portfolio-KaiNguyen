@@ -6,8 +6,8 @@ export function IdCard() {
   return (
     <div className="bg-hud-panel h-full flex flex-col">
       {/* ID Card Header */}
-      <div className="bg-hud-accent/10 border-b border-thin px-4 py-2">
-        <h2 className="text-hud-accent font-title text-sm uppercase tracking-wider">
+      <div className="bg-hud-accent/10 border-b border-thin px-6 py-3 lg:py-4">
+        <h2 className="text-hud-accent font-title text-sm uppercase tracking-widest">
           ID CARD
         </h2>
       </div>
