@@ -103,15 +103,19 @@ export default function Home() {
 
   return (
     <div className="h-screen bg-hud-panel text-hud-text font-content overflow-hidden">
-      {/* Header - 80px height */}
-      <header className="h-[80px] bg-hud-panel border-b border-thin flex items-center justify-between px-6">
+      {/* Header - Increased height for more spacing */}
+      <header className="h-[100px] lg:h-[120px] bg-hud-panel border-b border-thin flex items-center justify-between px-6">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-3">
-            <span className="text-hud-accent text-2xl font-title">[</span>
-            <h1 className="text-3xl font-title text-hud-accent uppercase tracking-widest">
+            <span className="text-hud-accent text-2xl lg:text-3xl font-title">
+              [
+            </span>
+            <h1 className="text-2xl lg:text-3xl font-title text-hud-accent uppercase tracking-widest">
               K@DE CONSOLE
             </h1>
-            <span className="text-hud-accent text-2xl font-title">]</span>
+            <span className="text-hud-accent text-2xl lg:text-3xl font-title">
+              ]
+            </span>
             <span className="text-hud-text/60 text-xs font-mono self-center">
               v1.0.0
             </span>
@@ -158,7 +162,7 @@ export default function Home() {
       </header>
 
       {/* Main Content - ID Card hidden on mobile, full terminal on mobile */}
-      <main className="h-[calc(100vh-80px)] lg:h-[calc(100vh-120px)] lg:grid lg:grid-cols-[510px_1fr]">
+      <main className="h-[calc(100vh-140px)] lg:h-[calc(100vh-160px)] lg:grid lg:grid-cols-[510px_1fr]">
         {/* Left: ID Card - Hidden on mobile */}
         <div className="p-0 hidden lg:block">
           <IdCard />

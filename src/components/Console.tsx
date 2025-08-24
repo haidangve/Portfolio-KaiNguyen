@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Chip } from "@/components/ui/Chip";
 import { MediaHolder } from "@/components/ui/MediaHolder";
 import { personalData } from "@/lib/data/personal-data";
+import { Mail, Github, Linkedin, Instagram, Download } from "lucide-react";
+import { ContactCard } from "@/components/ui/ContactCard";
 
 interface ConsoleProps {
   activeTab: string;
@@ -42,7 +44,7 @@ export function Console({
               kai@portfolio:~$ help
             </div>
 
-            <div className="space-y-1 ml-4 mt-4">
+            <div className="space-y-1 ml-4 mt-2">
               <div className="text-hud-text/80">
                 <span className="text-hud-accent font-mono">help</span> - Show
                 this help message
@@ -84,7 +86,7 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ about
             </div>
-            <div className="ml-4 mt-4">
+            <div className="ml-4 mt-2">
               <div className="text-hud-text/80 text-base leading-relaxed">
                 {personalData.bio.split(/(\*\*.*?\*\*)/).map((part, index) => {
                   if (part.startsWith("**") && part.endsWith("**")) {
@@ -112,11 +114,11 @@ export function Console({
               kai@portfolio:~$ projects
             </div>
 
-            <div className="space-y-6 ml-4">
+            <div className="space-y-4 ml-4">
               {personalData.projects.map((project, index) => (
-                <div key={index} className="flex gap-4">
+                <div key={index} className="flex gap-3">
                   {/* Project Thumbnail */}
-                  <MediaHolder className="w-48 h-32">
+                  <MediaHolder className="w-40 h-28 lg:w-48 lg:h-32">
                     <img
                       src={project.image}
                       alt={project.alt}
@@ -141,7 +143,7 @@ export function Console({
                       </a>
                       <span className="text-hud-accent/60">↗</span>
                     </div>
-                    <div className="text-hud-text/80 text-sm mb-2 leading-relaxed">
+                    <div className="text-hud-text/80 text-sm mb-1 leading-relaxed">
                       {project.description}
                     </div>
                     <div className="flex flex-wrap gap-1">
@@ -166,7 +168,7 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ skills
             </div>
-            <div className="space-y-4 ml-4">
+            <div className="space-y-3 ml-4">
               <div>
                 <div className="text-hud-accent font-bold mb-2">Frontend</div>
                 <div className="flex flex-wrap gap-2">
@@ -219,7 +221,7 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ experience
             </div>
-            <div className="space-y-4 ml-4">
+            <div className="space-y-3 ml-4">
               {personalData.experience.map((exp, index) => (
                 <div
                   key={index}
@@ -266,7 +268,7 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ education
             </div>
-            <div className="space-y-4 ml-4 mt-4">
+            <div className="space-y-3 ml-4 mt-2">
               {personalData.education.map((edu, index) => (
                 <div
                   key={index}
@@ -321,80 +323,44 @@ export function Console({
             <div className="text-hud-accent font-mono font-bold">
               kai@portfolio:~$ contact
             </div>
-            <div className="ml-4 mt-4 space-y-4">
+            <div className="ml-4 mt-2 space-y-3">
               <div className="text-hud-text/80">
                 Let&apos;s connect! Here&apos;s how to reach me:
               </div>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-hud-accent font-mono w-16">Email:</span>
-                  <a
-                    href={`mailto:${personalData.email}`}
-                    className="text-hud-accent hover:text-hud-accent/80 transition-colors underline"
-                  >
-                    {personalData.email}
-                  </a>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <span className="text-hud-accent font-mono w-16">
-                    GitHub:
-                  </span>
-                  <a
-                    href={`https://${personalData.social.github}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-hud-accent hover:text-hud-accent/80 transition-colors underline"
-                  >
-                    {personalData.social.github}
-                  </a>
-                  <span className="text-hud-accent/60">↗</span>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <span className="text-hud-accent font-mono w-16">
-                    LinkedIn:
-                  </span>
-                  <a
-                    href={`https://${personalData.social.linkedin}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-hud-accent hover:text-hud-accent/80 transition-colors underline"
-                  >
-                    {personalData.social.linkedin}
-                  </a>
-                  <span className="text-hud-accent/60">↗</span>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <span className="text-hud-accent font-mono w-16">
-                    Instagram:
-                  </span>
-                  <a
-                    href="https://instagram.com/nvdh_ai"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-hud-accent hover:text-hud-accent/80 transition-colors underline"
-                  >
-                    {personalData.social.instagram}
-                  </a>
-                  <span className="text-hud-accent/60">↗</span>
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <ContactCard
+                  icon={Mail}
+                  label="Email"
+                  href={`mailto:${personalData.email}`}
+                  external={false}
+                />
+                <ContactCard
+                  icon={Github}
+                  label="GitHub"
+                  href={`https://${personalData.social.github}`}
+                />
+                <ContactCard
+                  icon={Linkedin}
+                  label="LinkedIn"
+                  href={`https://${personalData.social.linkedin}`}
+                />
+                <ContactCard
+                  icon={Instagram}
+                  label="Instagram"
+                  href="https://instagram.com/nvdh_ai"
+                />
               </div>
 
-              <div className="mt-6 pt-4 border-t border-hud-accent/20">
+              <div className="mt-4 pt-3 border-t border-hud-accent/20">
                 <div className="text-hud-text/80 mb-3">Download my resume:</div>
-                <a
-                  href="https://drive.google.com/file/d/1O6tJD4kJrdcXpCtYku3lAf6RTN7_6C37/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-hud-accent/10 text-hud-accent border border-hud-accent/30 rounded hover:bg-hud-accent/20 transition-colors"
-                >
-                  <span>📄</span>
-                  <span>Resume.pdf</span>
-                  <span className="text-hud-accent/60">↗</span>
-                </a>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <ContactCard
+                    icon={Download}
+                    label="Resume.pdf"
+                    href="https://drive.google.com/file/d/1O6tJD4kJrdcXpCtYku3lAf6RTN7_6C37/view?usp=sharing"
+                  />
+                </div>
               </div>
             </div>
           </>
@@ -408,7 +374,7 @@ export function Console({
             <div className="text-hud-text/80">
               Welcome to my interactive portfolio terminal!
             </div>
-            <div className="text-hud-text/80 mt-4">
+            <div className="text-hud-text/80 mt-2">
               Type &apos;help&apos; to see available commands.
             </div>
           </>
@@ -436,7 +402,7 @@ export function Console({
   return (
     <div className="flex-1 flex flex-col border border-hud-accent/30 shadow-[0_0_8px_rgba(255,107,53,0.2)] min-h-0">
       {/* Console Header */}
-      <div className="bg-hud-accent/10 border-b border-hud-accent/30 px-6 py-2">
+      <div className="bg-hud-accent/10 border-b border-hud-accent/30 px-6 py-3 lg:py-4">
         <h2 className="text-sm font-title text-hud-accent uppercase tracking-widest">
           TERMINAL
         </h2>
@@ -496,7 +462,7 @@ export function Console({
       </div>
 
       {/* Console Content - Display Tab Content */}
-      <div className="flex-1 overflow-y-auto space-y-4 font-content text-base p-4 lg:p-6 bg-hud-panel relative min-h-0 console-content">
+      <div className="flex-1 overflow-y-auto space-y-2 font-content text-base p-3 lg:p-6 bg-hud-panel relative min-h-0 console-content pb-4">
         {/* Subtle top border for merged effect */}
         <div className="absolute top-0 left-0 right-0 h-px bg-hud-accent/30"></div>
         {errorMessages.length > 0 ? (
@@ -517,7 +483,7 @@ export function Console({
             </div>
           </div>
         ) : (
-          <div className="space-y-4">{currentContent}</div>
+          <div className="space-y-2">{currentContent}</div>
         )}
       </div>
     </div>
