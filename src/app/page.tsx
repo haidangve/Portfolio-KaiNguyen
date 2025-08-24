@@ -113,7 +113,7 @@ export default function Home() {
       </header>
 
       {/* Main Content - ID Card hidden on mobile, full terminal on mobile */}
-      <main className="h-[calc(100vh-140px)] lg:h-[calc(100vh-160px)] lg:grid lg:grid-cols-[510px_1fr]">
+      <main className="h-[calc(100vh-140px)] lg:h-[calc(100vh-200px)] lg:grid lg:grid-cols-[510px_1fr]">
         {/* Left: ID Card - Hidden on mobile */}
         <div className="p-0 hidden lg:block">
           <IdCard />
