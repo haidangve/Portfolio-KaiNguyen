@@ -17,6 +17,31 @@ body {
   @apply bg-hud-bg text-hud-text font-content min-h-screen;
 }
 
+/* Mobile-safe viewport handling for Safari and other mobile browsers */
+.mobile-safe {
+  /* Use dynamic viewport units for mobile browsers */
+  height: calc(100dvh - 140px) !important;
+}
+
+@media (min-width: 1024px) {
+  .mobile-safe {
+    height: calc(100vh - 160px) !important;
+  }
+}
+
+/* Fallback for browsers that don't support dvh */
+@supports not (height: 100dvh) {
+  .mobile-safe {
+    height: calc(100vh - 140px) !important;
+  }
+
+  @media (min-width: 1024px) {
+    .mobile-safe {
+      height: calc(100vh - 160px) !important;
+    }
+  }
+}
+
 /* Hide scrollbar for console content */
 .console-content::-webkit-scrollbar {
   display: none;
