@@ -27,7 +27,6 @@ export function ContactCard({
         <Icon className="w-5 h-5" />
         <span>{label}</span>
       </div>
-      {external && <span className="text-hud-accent/60">↗</span>}
     </a>
   );
 }

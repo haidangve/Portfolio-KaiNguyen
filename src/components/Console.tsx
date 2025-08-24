@@ -144,7 +144,6 @@ export function Console({
                       >
                         {project.name}
                       </a>
-                      <span className="text-hud-accent/60">↗</span>
                     </div>
                     <div className="text-hud-text/80 text-sm mb-1 leading-relaxed">
                       {project.description}
