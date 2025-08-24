@@ -11,12 +11,12 @@ export function PromptInput({
   validCommands = [],
 }: PromptInputProps) {
   const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   /**
    * Handles input change events and updates the input value state
    */
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
@@ -25,7 +25,7 @@ export function PromptInput({
    * - Enter: Submits the command
    * - Tab: Auto-completes with matching commands
    */
-  const handleKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && inputValue.trim()) {
       onCommandSubmit(inputValue.trim());
       setInputValue("");
@@ -45,16 +45,6 @@ export function PromptInput({
     }
   };
 
-  /**
-   * Auto-expands textarea height based on content
-   * Ensures the input field grows vertically when text overflows
-   */
-  const handleTextareaResize = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    const target = e.target as HTMLTextAreaElement;
-    target.style.height = "auto";
-    target.style.height = Math.min(target.scrollHeight, 200) + "px";
-  };
-
   return (
     <div className="bg-hud-panel p-3 lg:p-6 h-20 lg:h-24 mt-0 relative border border-hud-accent/30 shadow-[0_0_8px_rgba(255,107,53,0.2)]">
       {/* Subtle top border for visual separation */}
@@ -69,20 +59,17 @@ export function PromptInput({
 
         {/* Input field container */}
         <div className="flex items-baseline flex-1 relative">
-          {/* Auto-expanding textarea for multi-line input support */}
-          <textarea
+          {/* Regular input field for consistent baseline alignment */}
+          <input
             ref={inputRef}
+            type="text"
             value={inputValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyPress}
-            onInput={handleTextareaResize}
-            className="bg-transparent border-none outline-none text-hud-text font-content text-base lg:text-lg w-full resize-none overflow-hidden leading-6"
+            className="bg-transparent border-none outline-none text-hud-text font-content text-base lg:text-lg w-full leading-6"
             style={{
               caretColor: "transparent", // Hide default cursor
-              minHeight: "44px", // Touch-friendly minimum height
-              maxHeight: "200px", // Prevent excessive expansion
             }}
-            rows={1}
             autoFocus
             placeholder="Type a command..."
             // Mobile keyboard optimization attributes
@@ -94,10 +81,11 @@ export function PromptInput({
 
           {/* Custom blinking cursor positioned after text */}
           <div
-            className="w-3 h-6 bg-hud-accent animate-blink absolute shadow-[0_0_4px_rgba(255,107,53,0.6)]"
+            className="w-3 h-6 bg-hud-accent animate-blink absolute shadow-[0_0_4px_rgba(255,107,53,0.6)] pointer-events-none"
             style={{
               left: `${inputValue.length * 8.4}px`, // Approximate character width
               top: "0px",
+              zIndex: 1,
             }}
           />
         </div>

@@ -27,7 +27,7 @@ export function Console({
       const timeout = setTimeout(() => {
         setCurrentContent(getConsoleContent(activeTab));
         setIsLoading(false);
-      }, 800);
+      }, 400);
 
       return () => {
         clearTimeout(timeout);
