@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -9,8 +8,8 @@
 
   --font-family-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace,
     SFMono-Regular, Menlo, Consolas, monospace;
-  --font-family-title: "Orbitron", monospace;
-  --font-family-content: "Rajdhani", sans-serif;
+  --font-family-title: var(--font-orbitron), "Orbitron", monospace;
+  --font-family-content: var(--font-rajdhani), "Rajdhani", sans-serif;
 }
 
 body {
