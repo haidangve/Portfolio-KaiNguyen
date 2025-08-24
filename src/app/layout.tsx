@@ -1,25 +1,11 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Orbitron, Rajdhani } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
-});
-
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "700", "900"],
-});
-
-const rajdhani = Rajdhani({
-  variable: "--font-rajdhani",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -51,9 +37,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/img/k@de.svg?v=1" />
         <link rel="apple-touch-icon" href="/img/k@de.svg?v=1" />
       </head>
-      <body
-        className={`${jetbrainsMono.variable} ${orbitron.variable} ${rajdhani.variable} antialiased`}
-      >
+      <body className={`${jetbrainsMono.variable} antialiased`}>
         {children}
       </body>
     </html>
