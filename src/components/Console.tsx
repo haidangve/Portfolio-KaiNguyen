@@ -68,6 +68,10 @@ export function Console({
                 View my education
               </div>
               <div className="text-hud-text/80">
+                <span className="text-hud-accent font-mono">contact</span> - Get
+                in touch and download resume
+              </div>
+              <div className="text-hud-text/80">
                 <span className="text-hud-accent font-mono">home</span> - Go to
                 home screen
               </div>
@@ -311,6 +315,90 @@ export function Console({
             </div>
           </>
         );
+      case "contact":
+        return (
+          <>
+            <div className="text-hud-accent font-mono font-bold">
+              kai@portfolio:~$ contact
+            </div>
+            <div className="ml-4 mt-4 space-y-4">
+              <div className="text-hud-text/80">
+                Let&apos;s connect! Here&apos;s how to reach me:
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-hud-accent font-mono w-16">Email:</span>
+                  <a
+                    href={`mailto:${personalData.email}`}
+                    className="text-hud-accent hover:text-hud-accent/80 transition-colors underline"
+                  >
+                    {personalData.email}
+                  </a>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <span className="text-hud-accent font-mono w-16">
+                    GitHub:
+                  </span>
+                  <a
+                    href={`https://${personalData.social.github}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-hud-accent hover:text-hud-accent/80 transition-colors underline"
+                  >
+                    {personalData.social.github}
+                  </a>
+                  <span className="text-hud-accent/60">↗</span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <span className="text-hud-accent font-mono w-16">
+                    LinkedIn:
+                  </span>
+                  <a
+                    href={`https://${personalData.social.linkedin}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-hud-accent hover:text-hud-accent/80 transition-colors underline"
+                  >
+                    {personalData.social.linkedin}
+                  </a>
+                  <span className="text-hud-accent/60">↗</span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <span className="text-hud-accent font-mono w-16">
+                    Instagram:
+                  </span>
+                  <a
+                    href="https://instagram.com/nvdh_ai"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-hud-accent hover:text-hud-accent/80 transition-colors underline"
+                  >
+                    {personalData.social.instagram}
+                  </a>
+                  <span className="text-hud-accent/60">↗</span>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-hud-accent/20">
+                <div className="text-hud-text/80 mb-3">Download my resume:</div>
+                <a
+                  href="https://drive.google.com/file/d/1O6tJD4kJrdcXpCtYku3lAf6RTN7_6C37/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-hud-accent/10 text-hud-accent border border-hud-accent/30 rounded hover:bg-hud-accent/20 transition-colors"
+                >
+                  <span>📄</span>
+                  <span>Resume.pdf</span>
+                  <span className="text-hud-accent/60">↗</span>
+                </a>
+              </div>
+            </div>
+          </>
+        );
       case "home":
         return (
           <>
@@ -321,8 +409,7 @@ export function Console({
               Welcome to my interactive portfolio terminal!
             </div>
             <div className="text-hud-text/80 mt-4">
-              Type &apos;help&apos; to see available commands or click on the
-              tabs above.
+              Type &apos;help&apos; to see available commands.
             </div>
           </>
         );
@@ -355,8 +442,8 @@ export function Console({
         </h2>
       </div>
 
-      {/* Tabs - Chrome Style */}
-      <div className="flex bg-hud-panel overflow-x-auto">
+      {/* Tabs - Chrome Style - Hidden on mobile */}
+      <div className="hidden lg:flex bg-hud-panel overflow-x-auto">
         <Chip
           active={activeTab === "home"}
           onClick={() => onTabChange("home")}
@@ -409,7 +496,7 @@ export function Console({
       </div>
 
       {/* Console Content - Display Tab Content */}
-      <div className="flex-1 overflow-y-auto space-y-4 font-content text-base p-6 bg-hud-panel relative min-h-0 console-content">
+      <div className="flex-1 overflow-y-auto space-y-4 font-content text-base p-4 lg:p-6 bg-hud-panel relative min-h-0 console-content">
         {/* Subtle top border for merged effect */}
         <div className="absolute top-0 left-0 right-0 h-px bg-hud-accent/30"></div>
         {errorMessages.length > 0 ? (

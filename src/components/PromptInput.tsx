@@ -40,11 +40,13 @@ export function PromptInput({
   };
 
   return (
-    <div className="bg-hud-panel p-4 h-20 mt-0 relative border border-hud-accent/30 shadow-[0_0_8px_rgba(255,107,53,0.2)]">
+    <div className="bg-hud-panel p-3 lg:p-4 h-16 lg:h-20 mt-0 relative border border-hud-accent/30 shadow-[0_0_8px_rgba(255,107,53,0.2)]">
       {/* Subtle top border for separation */}
       <div className="absolute top-0 left-0 right-0 h-px bg-hud-accent/20"></div>
-      <div className="flex items-center gap-4 h-full">
-        <span className="text-hud-accent font-bold">kai@portfolio:~$</span>
+      <div className="flex items-center gap-2 lg:gap-4 h-full">
+        <span className="text-hud-accent font-bold text-sm lg:text-base">
+          kai@portfolio:~$
+        </span>
 
         <div className="flex items-center flex-1 relative">
           <input
@@ -53,11 +55,12 @@ export function PromptInput({
             value={inputValue}
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
-            className="bg-transparent border-none outline-none text-hud-text font-content text-sm w-full"
+            className="bg-transparent border-none outline-none text-hud-text font-content text-sm lg:text-sm w-full min-h-[44px] lg:min-h-auto"
             style={{
               caretColor: "transparent",
             }}
             autoFocus
+            placeholder="Type a command (e.g., help, about, contact)..."
           />
           <div
             className="w-3 h-6 bg-hud-accent animate-blink absolute shadow-[0_0_4px_rgba(255,107,53,0.6)]"

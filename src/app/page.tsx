@@ -17,6 +17,7 @@ export default function Home() {
     "skills",
     "experience",
     "education",
+    "contact",
     "home",
   ];
 
@@ -116,7 +117,7 @@ export default function Home() {
             </span>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <Button
             href="https://drive.google.com/file/d/1O6tJD4kJrdcXpCtYku3lAf6RTN7_6C37/view?usp=sharing"
             target="_blank"
@@ -156,15 +157,15 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Grid - Left: ID Card (510px), Right: Console + Chat Box */}
-      <main className="grid grid-cols-1 lg:grid-cols-[510px_1fr] h-[calc(100vh-120px)]">
-        {/* Left: ID Card */}
-        <div className="p-0">
+      {/* Main Content - ID Card hidden on mobile, full terminal on mobile */}
+      <main className="h-[calc(100vh-80px)] lg:h-[calc(100vh-120px)] lg:grid lg:grid-cols-[510px_1fr]">
+        {/* Left: ID Card - Hidden on mobile */}
+        <div className="p-0 hidden lg:block">
           <IdCard />
         </div>
 
-        {/* Right: Console + Chat Box */}
-        <div className="p-0 border-l border-thin min-h-0">
+        {/* Right: Console + Chat Box - Full width on mobile */}
+        <div className="p-0 h-full lg:border-l lg:border-thin min-h-0">
           <RightPanel
             activeTab={activeTab}
             onTabChange={setActiveTab}
@@ -175,8 +176,8 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Footer - 40px height (DECORATION ONLY) */}
-      <footer className="h-[40px] bg-hud-panel border-t border-thin flex items-center justify-between px-6 pt-0">
+      {/* Footer - Hidden on mobile, shown on desktop */}
+      <footer className="hidden lg:flex h-[40px] bg-hud-panel border-t border-thin items-center justify-between px-6 pt-0">
         <div className="flex items-center gap-4">
           <div className="w-2 h-2 bg-hud-accent rounded-full animate-pulse"></div>
         </div>
