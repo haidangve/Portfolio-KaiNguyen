@@ -19,6 +19,15 @@ export function Console({
   const [isLoading, setIsLoading] = useState(false);
   const [currentContent, setCurrentContent] = useState<React.ReactNode>(null);
 
+  /**
+   * Helper function to create consistent command prompt styling
+   */
+  const createCommandPrompt = (command: string) => (
+    <div className="text-hud-accent font-mono font-bold">
+      kai@portfolio:~$ {command}
+    </div>
+  );
+
   useEffect(() => {
     if (activeTab) {
       setIsLoading(true);
@@ -40,9 +49,7 @@ export function Console({
       case "help":
         return (
           <>
-            <div className="text-hud-accent font-mono font-bold">
-              kai@portfolio:~$ help
-            </div>
+            {createCommandPrompt("help")}
 
             <div className="space-y-1 ml-4 mt-2">
               <div className="text-hud-text/80">
@@ -83,9 +90,7 @@ export function Console({
       case "about":
         return (
           <>
-            <div className="text-hud-accent font-mono font-bold">
-              kai@portfolio:~$ about
-            </div>
+            {createCommandPrompt("about")}
             <div className="ml-4 mt-2">
               <div className="text-hud-text/80 text-base leading-relaxed">
                 {personalData.bio.split(/(\*\*.*?\*\*)/).map((part, index) => {
@@ -110,9 +115,7 @@ export function Console({
       case "projects":
         return (
           <>
-            <div className="text-hud-accent font-mono font-bold">
-              kai@portfolio:~$ projects
-            </div>
+            {createCommandPrompt("projects")}
 
             <div className="space-y-4 ml-4">
               {personalData.projects.map((project, index) => (
@@ -165,9 +168,7 @@ export function Console({
       case "skills":
         return (
           <>
-            <div className="text-hud-accent font-mono font-bold">
-              kai@portfolio:~$ skills
-            </div>
+            {createCommandPrompt("skills")}
             <div className="space-y-3 ml-4">
               <div>
                 <div className="text-hud-accent font-bold mb-2">Frontend</div>
@@ -218,9 +219,7 @@ export function Console({
       case "experience":
         return (
           <>
-            <div className="text-hud-accent font-mono font-bold">
-              kai@portfolio:~$ experience
-            </div>
+            {createCommandPrompt("experience")}
             <div className="space-y-3 ml-4">
               {personalData.experience.map((exp, index) => (
                 <div
@@ -265,9 +264,7 @@ export function Console({
       case "education":
         return (
           <>
-            <div className="text-hud-accent font-mono font-bold">
-              kai@portfolio:~$ education
-            </div>
+            {createCommandPrompt("education")}
             <div className="space-y-3 ml-4 mt-2">
               {personalData.education.map((edu, index) => (
                 <div
@@ -320,9 +317,7 @@ export function Console({
       case "contact":
         return (
           <>
-            <div className="text-hud-accent font-mono font-bold">
-              kai@portfolio:~$ contact
-            </div>
+            {createCommandPrompt("contact")}
             <div className="ml-4 mt-2 space-y-3">
               <div className="text-hud-text/80">
                 Let&apos;s connect! Here&apos;s how to reach me:
@@ -368,9 +363,7 @@ export function Console({
       case "home":
         return (
           <>
-            <div className="text-hud-accent font-mono font-bold">
-              kai@portfolio:~$ home
-            </div>
+            {createCommandPrompt("home")}
             <div className="text-hud-text/80">
               Welcome to my interactive portfolio terminal!
             </div>
@@ -382,9 +375,7 @@ export function Console({
       default:
         return (
           <>
-            <div className="text-hud-accent font-mono font-bold">
-              kai@portfolio:~$ welcome
-            </div>
+            {createCommandPrompt("welcome")}
             <div className="text-hud-text mt-4">
               Hi, I&apos;m Kai Nguyen, a Software Engineer.
             </div>
@@ -475,9 +466,7 @@ export function Console({
           </div>
         ) : isLoading ? (
           <div className="flex items-center space-x-2">
-            <div className="text-hud-accent font-mono font-bold">
-              kai@portfolio:~$ {activeTab}
-            </div>
+            {createCommandPrompt(activeTab)}
             <div className="text-hud-accent font-mono animate-pulse">
               Loading...
             </div>

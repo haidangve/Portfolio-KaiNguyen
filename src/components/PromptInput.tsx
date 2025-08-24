@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, KeyboardEvent, useRef } from "react";
+import { findClosestCommand } from "@/lib/utils";
 
 interface PromptInputProps {
   onCommandSubmit: (command: string) => void;
@@ -22,13 +23,22 @@ export function PromptInput({
 
   /**
    * Handles keyboard events for command submission and auto-completion
-   * - Enter: Submits the command
+   * - Enter: Submits the command with fuzzy search auto-correction
    * - Tab: Auto-completes with matching commands
    */
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && inputValue.trim()) {
-      onCommandSubmit(inputValue.trim());
-      setInputValue("");
+      const closestCommand = findClosestCommand(inputValue, validCommands);
+
+      if (closestCommand && closestCommand !== inputValue.trim()) {
+        // Auto-correct and execute the closest command
+        onCommandSubmit(closestCommand);
+        setInputValue("");
+      } else {
+        // Execute the exact command
+        onCommandSubmit(inputValue.trim());
+        setInputValue("");
+      }
     } else if (e.key === "Tab") {
       e.preventDefault();
       const currentInput = inputValue.toLowerCase().trim();

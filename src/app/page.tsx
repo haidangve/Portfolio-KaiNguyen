@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { IdCard } from "@/components/IdCard";
 import { RightPanel } from "@/components/RightPanel";
 import { Linkedin, Instagram, Github, Download } from "lucide-react";
+import { findClosestCommand } from "@/lib/utils";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("home"); //default tab set to home
@@ -21,59 +22,6 @@ export default function Home() {
     "home",
   ];
 
-  // Calculate similarity between two strings (Levenshtein distance)
-  const calculateSimilarity = (str1: string, str2: string): number => {
-    const matrix = []; //matrix set to empty array
-    // First column: cost to delete i chars of str2 to get ""
-    for (let i = 0; i <= str2.length; i++) {
-      matrix[i] = [i];
-    }
-    // First row: cost to delete j chars of str1 to get ""
-    for (let j = 0; j <= str1.length; j++) {
-      matrix[0][j] = j;
-    }
-
-    //Fill in the rest of the matrix
-    for (let i = 1; i <= str2.length; i++) {
-      for (let j = 1; j <= str1.length; j++) {
-        //same character, no cost
-        if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
-          matrix[i][j] = matrix[i - 1][j - 1];
-        } else {
-          //different character, find the minimum cost of the three possible values
-          //substitute (diagonal), insert (left), delete (up)
-          matrix[i][j] = Math.min(
-            matrix[i - 1][j - 1] + 1, //substitute
-            matrix[i][j - 1] + 1, //insert
-            matrix[i - 1][j] + 1 //delete
-          );
-        }
-      }
-    }
-    return matrix[str2.length][str1.length];
-  };
-
-  // Find the closest command
-  //input: input (string)
-  //output: closestCommand (string) | null
-  //description: finds the closest command to the input based on the Levenshtein distance
-  const findClosestCommand = (input: string): string | null => {
-    let minDistance = Infinity; //set minDistance to infinity
-    let closestCommand = null; //set closestCommand to null
-
-    //loop through validCommands and calculate the Levenshtein distance between the input and each command
-    for (const command of validCommands) {
-      const distance = calculateSimilarity(input, command);
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestCommand = command;
-      }
-    }
-
-    // Only suggest if similarity is reasonable (distance <= 3)
-    return minDistance <= 3 ? closestCommand : null;
-  };
-
   // Handle command submission
   //input: command (string)
   //output: void
@@ -87,7 +35,10 @@ export default function Home() {
       setConsoleMessages([]); // Clear error messages
     } else {
       // Invalid command - show error and suggestion
-      const closestCommand = findClosestCommand(normalizedCommand);
+      const closestCommand = findClosestCommand(
+        normalizedCommand,
+        validCommands
+      );
       const errorMessage = `No existing command such as "${normalizedCommand}". Type 'help' to see available commands.`;
       //syntax explanation: if the closest command is found, suggest it, otherwise suggest null
       const suggestionMessage = closestCommand
