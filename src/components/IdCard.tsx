@@ -21,8 +21,6 @@ export function IdCard() {
               src="/img/avatar.png"
               alt="Kai Nguyen"
               className="w-72 h-72 object-cover"
-              onError={(e) => console.error("Image failed to load:", e)}
-              onLoad={() => console.log("Image loaded successfully")}
             />
           </MediaHolder>
         </div>
