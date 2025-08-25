@@ -3,7 +3,10 @@ import Image from "next/image";
 import { Chip } from "@/components/ui/Chip";
 import { MediaHolder } from "@/components/ui/MediaHolder";
 import { personalData } from "@/lib/data/personal-data";
-import { Mail, Github, Linkedin, Instagram, Download } from "lucide-react";
+import { MdEmail } from "react-icons/md";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FiDownload } from "react-icons/fi";
 import { ContactCard } from "@/components/ui/ContactCard";
 
 interface ConsoleProps {
@@ -325,25 +328,30 @@ export function Console({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <ContactCard
-                  icon={Mail}
+                  icon={MdEmail}
                   label="Email"
                   href={`mailto:${personalData.email}`}
                   external={false}
                 />
                 <ContactCard
-                  icon={Github}
+                  icon={FaGithub}
                   label="GitHub"
                   href={`https://${personalData.social.github}`}
                 />
                 <ContactCard
-                  icon={Linkedin}
+                  icon={FaLinkedin}
                   label="LinkedIn"
                   href={`https://${personalData.social.linkedin}`}
                 />
                 <ContactCard
-                  icon={Instagram}
+                  icon={FaInstagram}
                   label="Instagram"
                   href="https://instagram.com/nvdh_ai"
+                />
+                <ContactCard
+                  icon={FaXTwitter}
+                  label="X"
+                  href="https://x.com/haiidangve"
                 />
               </div>
 
@@ -351,7 +359,7 @@ export function Console({
                 <div className="text-hud-text/80 mb-3">Download my resume:</div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <ContactCard
-                    icon={Download}
+                    icon={FiDownload}
                     label="Resume.pdf"
                     href="https://drive.google.com/file/d/1O6tJD4kJrdcXpCtYku3lAf6RTN7_6C37/view?usp=sharing"
                   />

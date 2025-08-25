@@ -3,7 +3,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { IdCard } from "@/components/IdCard";
 import { RightPanel } from "@/components/RightPanel";
-import { Linkedin, Instagram, Github, Download } from "lucide-react";
+import { FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FiDownload } from "react-icons/fi";
 import { findClosestCommand } from "@/lib/utils";
 
 export default function Home() {
@@ -79,8 +81,7 @@ export default function Home() {
             rel="noopener noreferrer"
             size="md"
           >
-            <Download className="w-4 h-4" />
-            Resume
+            <FiDownload className="w-4 h-4" />
           </Button>
           <Button
             href="https://linkedin.com/in/kai-nguyen09"
@@ -88,8 +89,7 @@ export default function Home() {
             rel="noopener noreferrer"
             size="md"
           >
-            <Linkedin className="w-4 h-4" />
-            LinkedIn
+            <FaLinkedin className="w-4 h-4" />
           </Button>
           <Button
             href="https://github.com/haidangve"
@@ -97,8 +97,7 @@ export default function Home() {
             rel="noopener noreferrer"
             size="md"
           >
-            <Github className="w-4 h-4" />
-            GitHub
+            <FaGithub className="w-4 h-4" />
           </Button>
           <Button
             href="https://instagram.com/nvdh_ai"
@@ -106,8 +105,15 @@ export default function Home() {
             rel="noopener noreferrer"
             size="md"
           >
-            <Instagram className="w-4 h-4" />
-            Instagram
+            <FaInstagram className="w-4 h-4" />
+          </Button>
+          <Button
+            href="https://x.com/haiidangve"
+            target="_blank"
+            rel="noopener noreferrer"
+            size="md"
+          >
+            <FaXTwitter className="w-4 h-4" />
           </Button>
         </div>
       </header>

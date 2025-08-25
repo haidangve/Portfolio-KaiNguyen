@@ -1,8 +1,8 @@
 import React from "react";
-import { LucideIcon } from "lucide-react";
+import { IconType } from "react-icons";
 
 interface ContactCardProps {
-  icon: LucideIcon;
+  icon: IconType;
   label: string;
   href: string;
   external?: boolean;
