@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { MediaHolder } from "@/components/ui/MediaHolder";
 import { InfoPanel } from "@/components/ui/InfoPanel";
 
@@ -17,10 +18,13 @@ export function IdCard() {
         {/* Profile Image Section - Takes 2/3 of space */}
         <div className="flex-[2] flex justify-center items-center">
           <MediaHolder variant="large">
-            <img
+            <Image
               src="/img/avatar.png"
               alt="Kai Nguyen"
+              width={288}
+              height={288}
               className="w-72 h-72 object-cover"
+              priority
             />
           </MediaHolder>
         </div>

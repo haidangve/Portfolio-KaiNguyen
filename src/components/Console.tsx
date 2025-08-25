@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { Chip } from "@/components/ui/Chip";
 import { MediaHolder } from "@/components/ui/MediaHolder";
 import { personalData } from "@/lib/data/personal-data";
@@ -122,14 +123,14 @@ export function Console({
                 <div key={index} className="flex gap-3">
                   {/* Project Thumbnail */}
                   <MediaHolder className="w-40 h-28 lg:w-48 lg:h-32">
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.alt}
+                      width={192}
+                      height={128}
                       className="w-full h-full object-cover object-center rounded-sm"
-                      style={{
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
+                      priority={index < 2}
+                      loading={index < 2 ? "eager" : "lazy"}
                     />
                   </MediaHolder>
 

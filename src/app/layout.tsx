@@ -9,8 +9,46 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "K@DE",
-  description: "Kai Nguyen's Portfolio - Software Engineer & Developer",
+  title: "K@DE - Software Engineer Portfolio",
+  description:
+    "Interactive terminal-style portfolio of Kai Nguyen, a Software Engineer specializing in full-stack development, React, Node.js, and modern web technologies.",
+  keywords: [
+    "Kai Nguyen",
+    "Software Engineer",
+    "Full Stack Developer",
+    "React",
+    "Node.js",
+    "Portfolio",
+    "Web Development",
+  ],
+  authors: [{ name: "Kai Nguyen" }],
+  creator: "Kai Nguyen",
+  openGraph: {
+    title: "Kai Nguyen - Software Engineer Portfolio",
+    description:
+      "Interactive terminal-style portfolio showcasing full-stack development projects and skills",
+    type: "website",
+    url: "https://portfolio-kai-nguyen.vercel.app",
+    images: [
+      {
+        url: "/img/avatar.png",
+        width: 1200,
+        height: 630,
+        alt: "Kai Nguyen - Software Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kai Nguyen - Software Engineer Portfolio",
+    description:
+      "Interactive terminal-style portfolio showcasing full-stack development projects and skills",
+    images: ["/img/avatar.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: [
       { url: "/img/k@de.svg", type: "image/svg+xml" },
