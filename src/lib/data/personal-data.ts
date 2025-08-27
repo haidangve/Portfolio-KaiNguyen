@@ -158,6 +158,32 @@ export const personalData: PersonalInfo = {
 
   projects: [
     {
+      name: "Invisibility Cloak Application",
+      description:
+        "A real-time computer vision application that creates an invisibility cloak effect using OpenCV and Flask. Features background capture with countdown, intuitive color selection with Harry Potter themed names, and professional error handling. The app processes video streams in real-time to detect and replace objects of specified colors with the captured background, creating a magical invisibility effect.",
+      image: "/img/invisibility_cloak.png",
+      alt: "Invisibility cloak computer vision application",
+      technologies: [
+        "Python",
+        "OpenCV",
+        "Flask",
+        "Computer Vision",
+        "REST API",
+        "JavaScript",
+        "CSS3",
+      ],
+      link: "https://github.com/haidangve/Invisible-Cloak",
+    },
+    {
+      name: "Android Tanning Salon App",
+      description:
+        "A comprehensive business management app for local tanning salons that streamlines customer onboarding, appointment scheduling, and administrative tasks. Features secure user authentication, real-time data synchronization, and an intuitive interface that helps salon owners manage their business operations efficiently.",
+      image: "/img/tanningbed.png",
+      alt: "Android app development",
+      technologies: ["Java", "XML", "PHP", "MySQL", "Gradle", "GitHub Actions"],
+      link: "https://www.linkedin.com/in/kai-nguyen09/details/projects",
+    },
+    {
       name: "Image to Checkbox Sketch Converter",
       description:
         "A creative web app that converts images into artistic 'checkbox' sketches. Built in just one hour as part of a coding challenge, this prototype demonstrates rapid development skills and creative problem-solving. The app transforms uploaded images into unique checkbox-based artwork, showcasing the intersection of art and technology.",
@@ -173,15 +199,6 @@ export const personalData: PersonalInfo = {
       image: "/img/oops.png",
       alt: "Pixelated game development project",
       technologies: ["C#", "Godot", "Figma", "Adobe Suite", "Agile"],
-      link: "https://www.linkedin.com/in/kai-nguyen09/details/projects",
-    },
-    {
-      name: "Android Tanning Salon App",
-      description:
-        "A comprehensive business management app for local tanning salons that streamlines customer onboarding, appointment scheduling, and administrative tasks. Features secure user authentication, real-time data synchronization, and an intuitive interface that helps salon owners manage their business operations efficiently.",
-      image: "/img/tanningbed.png",
-      alt: "Android app development",
-      technologies: ["Java", "XML", "PHP", "MySQL", "Gradle", "GitHub Actions"],
       link: "https://www.linkedin.com/in/kai-nguyen09/details/projects",
     },
     {
