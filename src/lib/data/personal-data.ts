@@ -199,7 +199,7 @@ export const personalData: PersonalInfo = {
       image: "/img/oops.png",
       alt: "Pixelated game development project",
       technologies: ["C#", "Godot", "Figma", "Adobe Suite", "Agile"],
-      link: "https://www.linkedin.com/in/kai-nguyen09/details/projects",
+      link: "https://github.com/haidangve/OOPs-Way-Back-Home",
     },
     {
       name: "Flower Persona Quiz",
