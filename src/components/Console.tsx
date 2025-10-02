@@ -132,6 +132,11 @@ export function Console({
                       width={192}
                       height={128}
                       className="w-full h-full object-cover object-center rounded-sm"
+                      style={{
+                        aspectRatio: "3/2",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
                       priority={index < 2}
                       loading={index < 2 ? "eager" : "lazy"}
                     />

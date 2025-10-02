@@ -64,6 +64,7 @@ export const personalData: PersonalInfo = {
       "Tailwind CSS",
       "SASS",
       "Redux/Zustand",
+      "GraphQL",
     ],
     backend: [
       "Java",
@@ -72,12 +73,26 @@ export const personalData: PersonalInfo = {
       "Node.js",
       ".NET",
       "Spring Boot",
+      "Flask",
+      "FastAPI",
+      "LangChain",
+      "MCP",
       "RESTful APIs",
     ],
-    aiMl: ["Data Analytics", "Machine Learning", "SQL", "Power BI"],
+    aiMl: [
+      "Data Analytics",
+      "Machine Learning",
+      "SQL",
+      "Power BI",
+      "OpenCV",
+      "Scikit-Learn",
+      "GPT-4o mini API",
+    ],
     tools: [
       "GitHub",
-      "AWS",
+      "AWS (EC2, S3, Lambda, Kafka, IAM)",
+      "Google Cloud",
+      "Azure",
       "Docker",
       "CI/CD Pipelines",
       "Agile/Scrum",
@@ -86,6 +101,9 @@ export const personalData: PersonalInfo = {
       "Vite",
       "PowerShell",
       "Linux",
+      "MongoDB",
+      "DynamoDB",
+      "SQLite",
     ],
   },
 
@@ -96,10 +114,10 @@ export const personalData: PersonalInfo = {
       companyLink: "https://www.prairiemicroworks.com/",
       period: "March 2025 - July 2025",
       description: [
-        "Built Android app UI with Java/XML and integrated RESTful APIs (PHP/MySQL), streamlining onboarding workflows for 5+ local tanning salons",
-        "Designed normalized database schema & session management logic, ensuring smooth user login and admin control",
-        "Automated builds/tests with Gradle (Kotlin) and GitHub Actions CI/CD, cutting deployment time and improving stability",
-        "Led requirements gathering, wireframing, and Agile sprints for a team of 6, delivering app on time and within scope",
+        "Built Android app UI with Java on Android SDK and integrated RESTful APIs (PHP) for 5+ local tanning salons; conducted API testing via Postman",
+        "Designed & implemented normalized MySQL database schema",
+        "Automated builds and regression tests with Gradle (Kotlin) and GitHub Actions CI/CD",
+        "Collaborated with a cross-functional team of 6 through Agile sprints, leading requirements gathering and wireframing",
       ],
     },
     {
@@ -109,9 +127,10 @@ export const personalData: PersonalInfo = {
         "https://www.linkedin.com/company/vggate/posts/?feedView=all",
       period: "May 2024 - October 2024",
       description: [
-        "Built Redux-based UI components for a drop shipping app (React.js, Node.js, Tailwind CSS); implemented Python-backed logic and API integration, reducing request latency by 18%",
-        "Shipped company website (React.js + WordPress) solo in 3 weeks, boosting SEO visibility by 25% and securing 4 new SaaS contracts",
+        "Developed scalable React/TypeScript/Redux features and integrated Python APIs that reduced request latency by 18%",
+        "Shipped company website (React.js + WordPress) solo in 3 weeks, boosting SEO visibility by 25% and driving $10000 in contracts; improved UX/UI using Figma",
         "Built Python data pipeline to scrape and clean datasets from 200+ websites, delivering insights for our SaaS B2B clients",
+        "Deployed services on AWS EC2, Lambda, S3, and Kafka, with containerized pipelines and CI/CD",
       ],
     },
     {
@@ -125,18 +144,30 @@ export const personalData: PersonalInfo = {
         "Wrote SQL queries (joins, subqueries, and aggregations) to clean/validate 100+ financial records, improving reporting accuracy by 20%",
       ],
     },
+    {
+      title: "Graphic Designer",
+      company: "MEC Music Club",
+      companyLink: "https://www.facebook.com/mec.neu/",
+      period: "November 2021 - May 2023",
+      description: [
+        "Led and contributed to the design process for 10+ mid- to large-scale university musical events, including stage layouts, posters, social media posts and visual branding",
+        "Collaborated with cross-functional teams of 200+ members (musicians, technical crew, and event managers) to deliver cohesive event experiences",
+        "Gained experience in user-centered design at scale by crafting visual and spatial experiences for diverse student audiences",
+        "Designed key projects including Mnight 2022 Rhapsodine, Now You See Me 2022 Ky Hoi, and NEU Youth Festival 2022",
+      ],
+    },
   ],
 
   education: [
     {
-      degree: "Diploma in Business Information Systems",
+      degree: "Diploma in Information Systems",
       institution: "Saskatchewan Polytechnic",
       period: "August 2023 - July 2025",
       gpa: "3.85/4.0",
       awards: ["Dean's Honour List (2023-2024)"],
       coursework: [
         "Web/Mobile Development",
-        "Object-Oriented Programming",
+        "Advanced OOP",
         "Data Structure and Algorithms",
         "System Analysis",
         "Networking and Cloud Development",
@@ -157,6 +188,23 @@ export const personalData: PersonalInfo = {
   ],
 
   projects: [
+    {
+      name: "ImmiBuddy, AI Compliance Agent",
+      description:
+        "Built from a 4-hour hackathon prototype into an AI copilot for immigration document validation. Used GPT-4o mini API + LangChain with custom MCP layers. React/Next.js frontend integrated with a Python (Flask/FastAPI) backend. The system helps users validate immigration documents and provides compliance guidance through intelligent AI assistance.",
+      image: "/img/immibuddy.png",
+      alt: "AI Compliance Agent for immigration documents",
+      technologies: [
+        "Python",
+        "LangChain",
+        "MCP",
+        "React.js",
+        "Next.js",
+        "GPT-4o mini API",
+        "Flask",
+        "FastAPI",
+      ],
+    },
     {
       name: "Invisibility Cloak Application",
       description:
@@ -216,6 +264,25 @@ export const personalData: PersonalInfo = {
         "Adobe Photoshop",
       ],
       link: "https://haidangve.github.io/FlowerQuiz/",
+    },
+    {
+      name: "Mnight 2022 Rhapsodine",
+      description:
+        "MEC's flagship musical night featuring all 4 artistic departments plus guest singers and celebrities. Led comprehensive 3-month design and production process including social media campaigns, product designs (backdrop, tickets, prints), and videography/editing (trailers, promotional content). Collaborated with 200+ team members to deliver a cohesive visual experience for diverse student audiences.",
+      image: "/img/mnight.jpg",
+      alt: "Mnight 2022 Rhapsodine musical event design",
+      technologies: [
+        "Adobe Illustrator",
+        "Adobe Photoshop",
+        "Adobe InDesign",
+        "Adobe Premiere Pro",
+        "Figma",
+        "Videography",
+        "Video Editing",
+        "Graphic Design",
+        "Event Branding",
+      ],
+      link: "https://www.facebook.com/photo/?fbid=4949141855139829&set=a.224862674234461",
     },
   ],
 };
