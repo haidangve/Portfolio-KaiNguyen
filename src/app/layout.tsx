@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { ScaleAdjuster } from "@/components/ScaleAdjuster";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -77,19 +78,7 @@ export default function RootLayout({
       </head>
       <body className={`${jetbrainsMono.variable} antialiased`}>
         {children}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            // Scale production to 90% to match dev appearance
-            if (window.location.hostname !== 'localhost') {
-              document.body.style.transform = 'scale(0.9)';
-              document.body.style.transformOrigin = 'top left';
-              document.body.style.width = '111.11%';
-              document.body.style.height = '111.11%';
-            }
-          `,
-          }}
-        />
+        <ScaleAdjuster />
       </body>
     </html>
   );
