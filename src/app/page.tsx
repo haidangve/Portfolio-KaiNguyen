@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { IdCard } from "@/components/IdCard";
 import { RightPanel } from "@/components/RightPanel";
@@ -11,6 +11,8 @@ import { findClosestCommand } from "@/lib/utils";
 export default function Home() {
   const [activeTab, setActiveTab] = useState("home"); //default tab set to home
   const [consoleMessages, setConsoleMessages] = useState<string[]>([]); //console messages set to empty array
+  const [currentDate, setCurrentDate] = useState<string>("");
+  const [currentTime, setCurrentTime] = useState<string>("");
 
   const validCommands = [
     //valid commands set to array
@@ -23,6 +25,23 @@ export default function Home() {
     "contact",
     "home",
   ];
+
+  // Update date and time on client side only to avoid hydration mismatch
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      setCurrentDate(now.toLocaleDateString());
+      setCurrentTime(now.toLocaleTimeString());
+    };
+
+    // Set initial date/time
+    updateDateTime();
+
+    // Update time every second
+    const interval = setInterval(updateDateTime, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Handle command submission
   //input: command (string)
@@ -143,7 +162,7 @@ export default function Home() {
           <div className="w-2 h-2 bg-hud-accent rounded-full animate-pulse"></div>
         </div>
         <div className="text-xs text-hud-text/50">
-          {new Date().toLocaleDateString()}, {new Date().toLocaleTimeString()}
+          {currentDate && currentTime ? `${currentDate}, ${currentTime}` : ""}
         </div>
       </footer>
     </div>

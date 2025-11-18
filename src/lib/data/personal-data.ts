@@ -46,7 +46,7 @@ export const personalData: PersonalInfo = {
   role: "Software Engineer",
   location: "Toronto, ON, Canada",
   email: "duchai.nv0909@gmail.com",
-  bio: "Hi, I'm **Kai Nguyen** — a software engineer with **2+ years** of experience in **full-stack development**, **UX/UI design**, and **AI/ML**. My path started in **fine arts**, before I dropped everything at **20** and moved to **Canada** to reinvent myself. What began as late nights of **self-study** grew into a passion for building **ethical AI** and **UX-centric** applications that solve real problems. I see myself as a **polymath** in progress, blending **tech**, **design**, and **business**. Based in **Toronto**, I'm driven to push boundaries while staying grounded in curiosity and ethics.",
+  bio: "Hi, I'm **Kai Nguyen** — a **software engineer**, **product designer/owner**, and aspiring **product manager** with **2+ years** of experience in **full-stack development**, **UX/UI design**, and **AI/ML**. My path started in **fine arts**, before I dropped everything at 20 and moved to Canada to reinvent myself. I'm passionate about building user-centered innovation, combining my background in design, engineering and business. Based in **Toronto**, I'm driven to push boundaries while staying grounded in curiosity and ethics.",
 
   social: {
     github: "github.com/haidangve",
@@ -108,6 +108,18 @@ export const personalData: PersonalInfo = {
   },
 
   experience: [
+    {
+      title: "Growth Intern",
+      company: "Poparide",
+      companyLink: "https://www.poparide.com/",
+      period: "November 2025 - February 2026",
+      description: [
+        "Drove user acquisition through strategic marketing campaigns, creating audience-specific digital assets and campaign flows that communicated value across web and social channels",
+        "Contributed to marketing and product strategy by prototyping outreach strategies, measuring engagement metrics, and iterating on campaigns to optimize user acquisition",
+        "Built and nurtured relationships with student organizations to establish partnerships and expand community reach, enabling scalable growth initiatives",
+        "Developed scalable content and workflow systems that improved campaign efficiency and enabled sustainable community growth",
+      ],
+    },
     {
       title: "Software Developer & Business Analyst",
       company: "CodeBrew (Prairie Micro Works Inc)",
